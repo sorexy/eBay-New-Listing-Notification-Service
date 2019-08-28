@@ -8,8 +8,8 @@ import email.utils
 import hashlib
 import time
 
-URLS = ['https://www.ebay.co.uk/sch/i.html?_from=R40&_sacat=0&LH_BIN=1&_sop=10&_nkw=macbook+pro+2019+15&_ipg=50&rt=nc',
-        'https://www.ebay.co.uk/sch/i.html?_from=R40&_sacat=0&LH_BIN=1&_sop=10&_nkw=macbook+pro+2018+15&_ipg=50&rt=nc']
+URLS = ['https://www.ebay.co.uk/sch/i.html?_from=R40&_sacat=0&LH_BIN=1&_sop=10&_nkw=macbook+pro+2019+15&_ipg=200&rt=nc',
+        'https://www.ebay.co.uk/sch/i.html?_from=R40&_sacat=0&LH_BIN=1&_sop=10&_nkw=macbook+pro+2018+15&_ipg=200&rt=nc']
 PW = os.getenv('password')
 PORT = 465
 SENDER_EMAIL, RECEIVER_EMAIL = "sorex.notifications@gmail.com", "richardrother1994@gmail.com"
