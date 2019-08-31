@@ -56,7 +56,6 @@ def sendEmail(macs2019, macs2018):
 
 
 def getUrlRes(URL):
-    print("Getting Request for URLs")
     while requests.get(URL).status_code != 200:
         print("Request FAILED, trying again in 10 secs. . .")
         time.sleep(10)
@@ -69,11 +68,8 @@ def getNewListings(url, prev_seen):
     """
     Returns a list of new mac listings
     """
-    print("Getting New Listings")
     soup = bs(url, 'html.parser')
-    print("soup instantiated")
     listings = soup.find_all('li', class_='sresult lvresult clearfix li')
-    print("got RAW ebay listings HTML")
 
     macs = []
     for item in listings:
@@ -99,18 +95,15 @@ previously_seen_2019, previously_seen_2018 = {}, {}
 
 # Main
 while True:
+    mac2019pg, mac2018pg = None, None
     # need to refresh URLs each time to make sure updated
-    print("Attempting to get 2019 macbook URL")
-    mac2019pg = getUrlRes(URLS[0])
-    print("Successful, Now trying to get 2018 macbook URLs")
-    mac2018pg = getUrlRes(URLS[1])
-    print("Successful")
+    while mac2019pg is None:
+        mac2019pg = getUrlRes(URLS[0])
+    while mac2018pg is None:
+        mac2018pg = getUrlRes(URLS[1])
 
-    print("Searching 2019 macbooks...")
     new2019macs = getNewListings(mac2019pg, previously_seen_2019)
-    print("Found 2019 macbooks")
     new2018macs = getNewListings(mac2018pg, previously_seen_2018)
-    print("Found 2018 macbooks")
 
     if new2019macs or new2018macs:
         print("============================ New Mac listings found! Preparing to send email. . . ============================")
